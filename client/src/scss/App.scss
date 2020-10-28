@@ -1,0 +1,257 @@
+@import "navbar";
+@import "create-workout";
+@import "home";
+
+:root {
+   font-size: 16px;
+   font-family: $font;
+   background-color: $bg-primary;
+}
+
+body {
+   color: black;
+   background-color: white;
+   margin: 0;
+   padding: 0;
+}
+
+body::-webkit-scrollbar {
+   width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+   background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+   background: #6649b8;
+   border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar {
+   width: 0.5rem;
+}
+
+textarea::-webkit-scrollbar-track {
+   background: #1e1e24;
+}
+
+textarea::-webkit-scrollbar-thumb {
+   background: #6649b8;
+   border-radius: 10px;
+}
+
+input, textarea, button, select {
+   font-family: inherit;
+   font-size: inherit;
+}
+
+.required::after {
+   content: "*";
+   color: #9566d6;
+   font-size: 0.7em;
+   position: relative;
+   top: -4px
+}
+
+main {
+   margin-left: 5rem;
+}
+
+@media only screen and (max-width: 750px) {
+   main {
+      margin-left: 0;
+   }
+}
+
+.edit-workout-page {
+   background: $bg-primary;
+   color: $text-secondary;
+   
+   .edit-workout-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+      margin-bottom: 100px;
+   }
+
+   .edit-workout-steps {
+      display: flex;
+      margin-left: 10rem;
+      
+      .add-step-button {
+         background: $bg-primary;
+         border: none;
+         cursor: pointer;
+         
+         svg {
+            padding: 3px 8px 3px 8px;
+            border-radius: 55px;
+            border: 5px solid gray;
+            font-size: 83px;
+            color: $text-primary;
+            transition: $btn-transition-speed;
+            filter: grayscale(100%) opacity(0.7);
+         }
+      }
+
+      .add-step-button:hover {
+         svg {
+            border-color: $text-secondary;
+            font-size: 85px;
+            color: $text-secondary;
+            filter: grayscale(0%) opacity(1);
+         }
+      }
+
+      .add-step-button:focus {
+         outline: none;
+         svg {
+            border-color: $text-secondary;
+            font-size: 85px;
+            color: $text-secondary;
+            filter: grayscale(0%) opacity(1);
+         }
+      }
+   }
+}
+.step-modal-overlay {
+   position: fixed;
+   top: 0px;
+   left: 0px;
+   right: 0px;
+   bottom: 0px;
+   background: rgba(15, 29, 38, 0.5);
+
+   .step-modal-content {
+      position: fixed;
+      box-shadow: 0 0.5px 5px #731ee9;
+      background: #1c1f2a;
+      border-radius: 20px;
+      outline: none;
+      padding: 32px 40px 40px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $text-secondary;
+
+      .new-step-header {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin-bottom: 35px;
+         font-weight: bold;
+         font-size: 23px;
+
+         .back-button {
+            position: absolute;
+            left: 40px;
+            background: inherit;
+            border: none;
+            color: $text-secondary;
+            font-size: 40px;
+            padding: 0;
+            cursor: pointer;
+            transition: $btn-transition-speed;
+         }
+
+         .back-button:hover {
+            font-size: 42px;
+            color: white;
+         }
+
+         .back-button:focus {
+            outline: none;
+            font-size: 42px;
+            color: white;
+         }
+      }
+      
+      .input-box {
+         position: relative;
+         width: 400px;
+         min-height: 50px;
+         margin-bottom: 35px;
+         border: 1px solid $text-secondary;
+         
+         input, textarea, select {
+            position: absolute;
+            color: $text-secondary;
+            height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            border: 1px solid #111;
+            background: transparent;
+            padding: 10px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            outline: none;
+            font-size: 16px;
+            font-weight: 300;
+            transition: $btn-transition-speed;
+            resize: none;
+         }
+
+         input:focus, textarea:focus, select:focus {
+            background: $bg-primary;
+         }
+
+         span {
+            position: absolute;
+            top: 4px;
+            left: 1px;
+            padding: 10px;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 300;
+            transition: 0.5s;
+            pointer-events: none;
+         }
+
+         input:focus~span, input:valid~span,
+         textarea:focus~span, select:focus~span {
+            transform: translateX(-10px) translateY(-32px);
+            font-size: 12px;
+            top: 0px;
+         }
+      }
+
+      .description-text {
+         height: 120px;
+      }
+
+      .input-box:last-child {
+         margin-bottom: 0;
+      }
+
+      .add-step-button {
+         cursor: pointer;
+         filter: opacity(0.9);
+         transition: $btn-transition-speed;
+         // More specific css is overriding this
+         background: #731ee9;
+      }
+      .add-step-button:hover {
+         filter: opacity(1);
+         background: $bg-primary;
+         color: white;
+      }
+   }
+}
+
+
+.ReactModal__Body--open {
+   overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+   .edit-workout-page {
+      .edit-workout-steps {
+         margin-left: 6rem;
+      }
+   }
+}
+
+

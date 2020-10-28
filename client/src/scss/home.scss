@@ -1,0 +1,47 @@
+.home-image {
+   background-image: url("./images/kettlebell2.jpg");
+   background-size: cover;
+   height: 100vh;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center;
+   //box-shadow: 0 0 96px 40px #23232e;
+}
+
+.home-container {
+   color: white;
+   background-color: #040d15;
+   height: 250vh;
+}
+
+.home-description {
+   margin-top: 100px;
+   display: flex;
+   justify-content: center;
+   font-size: 50px;
+   font-weight: bold;
+}
+
+.home-buttons {
+   margin-top: 125px;
+   display: flex;
+   justify-content: center;
+
+   .home-button {
+      position: relative;
+      display: inline-block;
+      padding: 12px 36px;
+      margin: 0 40px 0 40px;
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 18px;
+      letter-spacing: 2px;
+      border-radius: 40px;
+      background: linear-gradient(90deg, #0162c8, #55e7fc);
+   }
+
+   .home-button:nth-child(2) {
+      background: linear-gradient(90deg, #755bea, #ff72c0);
+   }
+}
