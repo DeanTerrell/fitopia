@@ -1,11 +1,18 @@
 import React from 'react'
+import {motion} from 'framer-motion';
 
 export const AddStep2 = (props) => {
    if (props.page !== 2) { 
       return null
     }
    return (
-      <React.Fragment>
+      <motion.div 
+         initial="initial" 
+         animate="in" 
+         exit="out" 
+         variants={props.pageVariants} 
+         transition={props.pageTransition}
+      >
          <div className="input-box">
             <select
                name="sets"
@@ -31,6 +38,6 @@ export const AddStep2 = (props) => {
                onMouseDown={props.submit} 
             />
          </div>
-      </React.Fragment>
+      </motion.div>
    )
 }

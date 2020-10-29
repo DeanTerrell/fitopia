@@ -24,7 +24,7 @@ export const CreateWorkout = () => {
    const updateDescription = (e) => {
       setDescription(e.target.value);
    }
-
+/*
    const expandTextField = (e) => {
       e.target.style.height = "150px";
       e.target.parentElement.style.height = "150px";
@@ -34,7 +34,7 @@ export const CreateWorkout = () => {
       e.target.style.height = "100%";
       e.target.parentElement.style.height = "100%";
    }
-
+*/
    return (
       <div className="create-workout-page">
          <div className="create-workout-container">

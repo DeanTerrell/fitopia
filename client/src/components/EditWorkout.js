@@ -1,10 +1,11 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
+import {AnimatePresence} from 'framer-motion';
 import Modal from 'react-modal';
 
 import {GlobalContext} from '../context/GlobalState';
-import { AddStep1 } from './AddStep1';
-import { AddStep2 } from './AddStep2';
+import {AddStep1} from './AddStep1';
+import {AddStep2} from './AddStep2';
 
 Modal.setAppElement('#root');
 export const EditWorkout = () => {
@@ -64,6 +65,30 @@ export const EditWorkout = () => {
       setPage(1);
    }
 
+   const pageVariants = {
+      initial: {
+         opacity: 0,
+         x: "-100vw",
+         scale: 0.8
+      },
+      in: {
+         opacity: 1,
+         x: 0,
+         scale: 1
+      },
+      out: {
+         opacity: 0,
+         x: "100vw",
+         scale: 1.2
+      }
+   }
+
+   const pageTransition = {
+      type: "tween",
+      ease: "anticipate",
+      duration: 1
+   }
+
    return (
       <div className="edit-workout-page">
          <div className="edit-workout-header">
@@ -78,7 +103,7 @@ export const EditWorkout = () => {
                 isOpen={modalIsOpen} onRequestClose={closeModal}>
             <div className="new-step-header">
                {  
-                  page == 2 &&
+                  page === 2 &&
                   <button onClick={previousPage} className="back-button">
                      <i className="fas fa-long-arrow-alt-left"></i>
                   </button>
@@ -86,21 +111,29 @@ export const EditWorkout = () => {
                <span>Add Step</span>
             </div>
             <form>
-               <AddStep1
-                  name = {step.name}
-                  description = {step.description}
-                  handleChange = {handleChange}
-                  submit = {submit}
-                  page = {page}
-                  nextPage = {nextPage}
-               />
-               <AddStep2
-                  name = {step.name}
-                  description = {step.description}
-                  handleChange = {handleChange}
-                  submit = {submit}
-                  page = {page}
-               />
+               <AnimatePresence>
+                  <AddStep1
+                     name = {step.name}
+                     description = {step.description}
+                     handleChange = {handleChange}
+                     submit = {submit}
+                     page = {page}
+                     nextPage = {nextPage}
+                     pageVariants = {pageVariants}
+                     pageTransition = {pageTransition}
+                     key="Step1"
+                  />
+                  <AddStep2
+                     name = {step.name}
+                     description = {step.description}
+                     handleChange = {handleChange}
+                     submit = {submit}
+                     page = {page}
+                     pageVariants = {pageVariants}
+                     pageTransition = {pageTransition}
+                     key="Step2"
+                  />
+               </AnimatePresence>
             </form>
          </Modal>
       </div>
