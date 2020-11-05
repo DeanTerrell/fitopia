@@ -15,8 +15,11 @@ const workoutsRouter = require('./routes/workoutsRouter');
 
 const app = express();
 
+
+
 // Use body parser middleware (POST requests)
 app.use(express.json());
+app.use(express.urlencoded({extended: false}))
 
 if(process.env.NODE_ENV === "development") {
    app.use(morgan('dev'));

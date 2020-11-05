@@ -1,34 +1,38 @@
 import React from 'react'
-import {motion} from 'framer-motion';
+//import {motion} from 'framer-motion';
 
 export const AddStep2 = (props) => {
    if (props.page !== 2) { 
       return null
     }
    return (
-      <motion.div 
-         initial="initial" 
-         animate="in" 
-         exit="out" 
-         variants={props.pageVariants} 
-         transition={props.pageTransition}
-      >
+      <React.Fragment>
          <div className="input-box">
-            <select
+            <input
                name="sets"
+               type="number"
                value={props.sets} 
                onChange={props.handleChange}
             />
             <span>Sets</span>
          </div>
          <div className="input-box">
-            <select
+            <input
                name="reps" 
-               type="text" 
+               type="number" 
                value={props.reps} 
                onChange={props.handleChange}
             />
             <span>Reps</span>
+         </div>
+         <div className="input-box">
+            <input
+               name="file" 
+               type="file" 
+               value={props.file} 
+               onChange={props.handleChange}
+            />
+            <span>Image</span>
          </div>
          <div className="input-box">
             <input 
@@ -38,6 +42,6 @@ export const AddStep2 = (props) => {
                onMouseDown={props.submit} 
             />
          </div>
-      </motion.div>
+      </React.Fragment>
    )
 }

@@ -88,6 +88,28 @@ export const GlobalProvider = ({children}) => {
       }
    }
 
+   async function updateWorkout(workout) {
+      const config = {
+         headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+         }
+      }
+
+      try {
+         const res = await axios.put('/api/workouts', workout, config);
+         
+         action({
+            type: 'UPDATE_WORKOUT',
+            payload: res.data.workouts
+         })
+      } catch (error) {
+         action({
+            type: 'WORKOUT_ERROR',
+            payload: error.response.data.error
+         })
+      }
+   }
+
    return (
    <GlobalContext.Provider value={{
       workouts: state.workouts,
@@ -97,7 +119,8 @@ export const GlobalProvider = ({children}) => {
       getAllWorkouts,
       getWorkout,
       deleteWorkout,
-      addWorkout
+      addWorkout,
+      updateWorkout
       }}>
          {children}
    </GlobalContext.Provider>)

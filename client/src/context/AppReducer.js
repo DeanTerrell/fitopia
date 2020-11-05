@@ -23,6 +23,11 @@ const AppReducer = (state, action) => {
                ...state,
                workouts: [...state.workouts, action.payload]
             }
+         case 'UPDATE_WORKOUT':
+            return {
+               ...state,
+               workouts: [...state.workouts, action.payload]
+            }
          case 'WORKOUT_ERROR':
             return {
                ...state,

@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import {AnimatePresence} from 'framer-motion';
+//import {AnimatePresence} from 'framer-motion';
 import Modal from 'react-modal';
 
 import {GlobalContext} from '../context/GlobalState';
@@ -14,7 +14,10 @@ export const EditWorkout = () => {
    const [page, setPage] = useState(1);
    const [step, setStep] = useState({
       name: "", 
-      description: ""
+      description: "",
+      sets: 0,
+      reps: 0,
+      file: null
    });
 
    const {currentWorkout, getWorkout, updateWorkout} = useContext(GlobalContext);
@@ -36,7 +39,10 @@ export const EditWorkout = () => {
 
    // Set 1 property of "step" using name/value properties
    const handleChange = (event) => {
-      const {name, value} = event.target;
+      let {name, value} = event.target;
+      if(name === "file") {
+         value = event.target.files[0];
+      }
       setStep({
          ...step,
          [name]: value
@@ -52,41 +58,20 @@ export const EditWorkout = () => {
    }
 
    const submit = () => {
-      // const newWorkout = {
-      //    name,
-      //    description
-      // }
-      // addWorkout(newWorkout);
       console.log(step);
+      const newStep = {
+         id,
+         ...step
+      }
+      updateWorkout(newStep);
       setStep({
          name: "", 
-         description: ""
+         description: "",
+         sets: 0,
+         reps: 0,
+         file: null
       });
       setPage(1);
-   }
-
-   const pageVariants = {
-      initial: {
-         opacity: 0,
-         x: "-100vw",
-         scale: 0.8
-      },
-      in: {
-         opacity: 1,
-         x: 0,
-         scale: 1
-      },
-      out: {
-         opacity: 0,
-         x: "100vw",
-         scale: 1.2
-      }
-   }
-
-   const pageTransition = {
-      type: "tween",
-      ease: "anticipate",
-      duration: 1
    }
 
    return (
@@ -111,29 +96,21 @@ export const EditWorkout = () => {
                <span>Add Step</span>
             </div>
             <form>
-               <AnimatePresence>
-                  <AddStep1
-                     name = {step.name}
-                     description = {step.description}
-                     handleChange = {handleChange}
-                     submit = {submit}
-                     page = {page}
-                     nextPage = {nextPage}
-                     pageVariants = {pageVariants}
-                     pageTransition = {pageTransition}
-                     key="Step1"
-                  />
-                  <AddStep2
-                     name = {step.name}
-                     description = {step.description}
-                     handleChange = {handleChange}
-                     submit = {submit}
-                     page = {page}
-                     pageVariants = {pageVariants}
-                     pageTransition = {pageTransition}
-                     key="Step2"
-                  />
-               </AnimatePresence>
+               <AddStep1
+                  name = {step.name}
+                  description = {step.description}
+                  handleChange = {handleChange}
+                  submit = {submit}
+                  page = {page}
+                  nextPage = {nextPage}
+               />
+               <AddStep2
+                  name = {step.name}
+                  description = {step.description}
+                  handleChange = {handleChange}
+                  submit = {submit}
+                  page = {page}
+               />
             </form>
          </Modal>
       </div>

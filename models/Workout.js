@@ -10,6 +10,12 @@ const WorkoutSchema = new mongoose.Schema({
       type: String,
       trim: true
    },
+   sets: Number,
+   reps: Number,
+   image: {
+      data: Buffer,
+      contentType: String
+   },
    createdAt: {
       type: Date,
       default: Date.now

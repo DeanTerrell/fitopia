@@ -1,5 +1,5 @@
 import React from 'react'
-import {motion} from 'framer-motion';
+//import {motion} from 'framer-motion';
 
 export const AddStep1 = (props) => {
    if (props.page !== 1) { 
@@ -7,13 +7,7 @@ export const AddStep1 = (props) => {
     }
 
    return (
-      <motion.div 
-         initial="initial" 
-         animate="in" 
-         exit="out" 
-         variants={props.pageVariants} 
-         transition={props.pageTransition}
-      >
+      <React.Fragment>
          <div className="input-box">
             <input 
                required 
@@ -40,6 +34,6 @@ export const AddStep1 = (props) => {
                onMouseDown={props.nextPage} 
             />
          </div>
-      </motion.div>
+      </React.Fragment>
    )
 }
